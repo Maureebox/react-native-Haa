@@ -1,55 +1,66 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Tabs } from 'expo-router'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons';
+import Colors from '@/constants/Colors';
 
-import Colors from '../../constants/Colors';
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const _layout = () => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-      }}>
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          tabBarLabel: 'one',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="font" size={24} color="black" />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="proflie"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarLabel: 'Proflie',
+          tabBarIcon: ({ color, size }) => (
+            <Fontisto name="star" size={24} color="black" />
+          ),
         }}
       />
+
+      <Tabs.Screen
+        name="two"
+        options={{
+          tabBarLabel: 'x2',
+          tabBarIcon: ({ color, size }) => (
+
+            <MaterialCommunityIcons name="map-marker-star" size={24} color="black" />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="we"
+        options={{
+          tabBarLabel: 'WE',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="key-star" size={24} color="black" />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="explore"
+        options={{
+          tabBarLabel: 'Explore',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="kickstarter" size={24} color="black" />
+          ),
+        }}
+      />
+
     </Tabs>
   );
-}
+};
+
+export default _layout
